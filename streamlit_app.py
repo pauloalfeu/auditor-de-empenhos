@@ -13,7 +13,7 @@ uploaded_file_1 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente 
 uploaded_file_2 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente aos **empenhos planilhados**:", type=["csv"])
 
 if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
-    df1 = pd.read_csv(uploaded_file_1, sep=',', encoding='latin-1')
+    df1 = pd.read_csv(uploaded_file_1, encoding='latin-1')
     df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='utf-8')
 
     # Criando uma nova coluna 'ano' extraindo o ano da coluna 'empenho'
@@ -29,7 +29,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     # Função para comparar os DataFrames e retornar um novo DataFrame com as diferenças
     def comparar_empenhos(df1, df2):
         # Renomear a coluna 'Empenho' do df1 para garantir a comparação
-        #df1 = df1.rename(columns={'Empenho': 'EMPENHO'})
+        df1 = df1.rename(columns={'Empenho': 'EMPENHO'})
 
         # Encontrar os empenhos que estão apenas em um dos DataFrames
         empenhos_unicos_df1 = df1[~df1['EMPENHO'].isin(df2['EMPENHO'])]
