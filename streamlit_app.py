@@ -34,5 +34,24 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
 
 
 
+
+
+
+
+    # Encontrar os empenhos únicos em cada DataFrame
+    empenhos_unicos_relatorio = set(empenhos_relatorio['Empenho']) - set(empenhos_planilhados['EMPENHO'])
+    empenhos_unicos_planilhados = set(empenhos_planilhados['EMPENHO']) - set(empenhos_relatorio['Empenho'])
+
+    # Criar DataFrames com os empenhos únicos
+    df_unicos_relatorio = empenhos_relatorio[empenhos_relatorio['Empenho'].isin(empenhos_unicos_relatorio)]
+    df_unicos_planilhados = empenhos_planilhados[empenhos_planilhados['EMPENHO'].isin(empenhos_unicos_planilhados)]
+
+    # Concatenar os DataFrames de diferenças
+    diferencas = pd.concat([df_unicos_relatorio, df_unicos_planilhados], ignore_index=True)
+
+    # Exibir o DataFrame com as diferenças
+    st.data_editor(diferencas)
+
+
 else:
     st.info("☝️ Atenção: Para que a comparação seja realizada, é preciso que você faça o upload dos dois arquivos CSV indicados na barra lateral. Ao enviar, o sistema irá processar os dados e apresentar os resultados de forma clara e organizada.")
