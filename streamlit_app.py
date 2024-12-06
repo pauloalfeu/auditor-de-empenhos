@@ -30,7 +30,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     # Função para comparar os DataFrames e retornar um novo DataFrame com as diferenças
     def comparar_empenhos(df1, df2):
         # Renomear a coluna 'Empenho' do df1 para garantir a comparação
-        df1 = df1.rename(column={'Empenho': 'EMPENHO'})
+        df1 = df1.rename(columns={'Empenho': 'EMPENHO'})
         # Renomeando a coluna 'A' para 'Coluna_A'
         #df1['Empenho'] = df1['Empenho'].rename('EMPENHO')
 
