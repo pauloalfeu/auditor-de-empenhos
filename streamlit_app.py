@@ -15,6 +15,8 @@ uploaded_file_2 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente 
 if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     df1 = pd.read_csv(uploaded_file_1, sep=',', encoding='latin1')
     df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='latin1')
+    df1.str.decode('utf-8')
+    df2.str.decode('utf-8')
 
     # Criando uma nova coluna 'ano' extraindo o ano da coluna 'empenho'
     df2['ANO'] = df2['EMPENHO'].str.extract(r'(\d{4})$')
