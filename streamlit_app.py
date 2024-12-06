@@ -17,17 +17,17 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='latin1')
 
     # Criando uma nova coluna 'ano' extraindo o ano da coluna 'empenho'
-    df2['ano'] = df2['empenho'].str.extract(r'(\d{4})$')
+    df2['ANO'] = df2['EMPENHO'].str.extract(r'(\d{4})$')
 
     # Criando uma nova coluna 'empenho' com apenas o número
-    df2['empenho'] = df2['empenho'].str.split('/').str[0]
+    df2['EMPENHO'] = df2['EMPENHO'].str.split('/').str[0]
 
     # Criando um novo DataFrame com as colunas desejadas
-    empenhos_planilhados = df2[['empenho', 'ano']]
+    empenhos_planilhados = df2[['EMPENHO', 'ANO']]
 
     # Convertendo as colunas 'empenho' e 'ano' para o tipo numérico (opcional)
-    empenhos_planilhados['empenho'] = pd.to_numeric(empenhos_planilhados['empenho'])
-    empenhos_planilhados['ano'] = pd.to_numeric(empenhos_planilhados['ano'])
+    empenhos_planilhados['EMPENHO'] = pd.to_numeric(empenhos_planilhados['EMPENHO'])
+    empenhos_planilhados['ANO'] = pd.to_numeric(empenhos_planilhados['ANO'])
 
     st.data_editor(empenhos_planilhados)
 
