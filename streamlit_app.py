@@ -12,8 +12,8 @@ uploaded_file_1 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente 
     # Upload do segundo CSV
 uploaded_file_2 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente aos **empenhos planilhados**:")
 
-st.sidebar.warning("Para haver processamento correto, a planilha inserida deve conter uma coluna chamada 'EMPENHO' no topo e logo abaixo todos os números de empenhos que se deseja verificar")
-st.sidebar.info("Para isso, basta colar os números dos empenhos que serão buscados em uma planilha em branco (ideal para pesquisar por empenhos de mais de uma planilha)")
+st.sidebar.warning("""Para haver processamento correto, a planilha inserida deve conter uma coluna chamada 'EMPENHO' no topo e logo abaixo todos os números de empenhos que se deseja verificar. 
+Para isso, basta colar os números dos empenhos que serão buscados em uma planilha em branco (ideal para pesquisar por empenhos de mais de uma planilha""")
 
 if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     df1 = pd.read_csv(uploaded_file_1, sep=';', encoding='latin1')
