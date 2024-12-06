@@ -25,7 +25,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     empenhos_planilhados = df2[['EMPENHO', 'ANO', 'PLANILHA']]
     #empenhos_relatorio = df1[['Empenho', 'Vínculo', 'Emissão,', 'Empenhado' 'Credor']]
 
-    df1 = df1['Empenho'].astype(str)
+    df1 = df1['Empenho', 'Emissão', 'Credor'].astype(str)
     empenhos_relatorio = df1#['Empenho']
 
     st.data_editor(empenhos_relatorio)
