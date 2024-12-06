@@ -25,13 +25,13 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     empenhos_planilhados = df2[['EMPENHO', 'ANO', 'PLANILHA']]
     #empenhos_relatorio = df1[['Empenho', 'Vínculo', 'Emissão,', 'Empenhado' 'Credor']]
 
-    df1= df1['Empenho'].astype(str)
-    empenhos_relatorio = df1#['Empenho']
+    df1['Empenho'] = df1['Empenho'].astype(str)
+    empenhos_relatorio = df1['Empenho']
 
 
     # Encontrar os empenhos únicos em cada DataFrame
-    empenhos_unicos_relatorio = set(empenhos_relatorio['Empenho']) - set(empenhos_planilhados['EMPENHO'])
     empenhos_unicos_planilhados = set(empenhos_planilhados['EMPENHO']) - set(empenhos_relatorio['Empenho'])
+    empenhos_unicos_relatorio = set(empenhos_relatorio['Empenho']) - set(empenhos_planilhados['EMPENHO'])
 
     # Criar DataFrames com os empenhos únicos
     df_unicos_relatorio = empenhos_relatorio[empenhos_relatorio['Empenho'].isin(empenhos_unicos_relatorio)]
