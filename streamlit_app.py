@@ -24,7 +24,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
 
     # Criando um novo DataFrame com as colunas desejadas
     empenhos_planilhados = df2[['EMPENHO', 'ANO', 'PLANILHA']]
-    empenhos_relatorio = df1[['Empenho', 'Vínculo', 'Emissão,', 'Empenhado' 'Credor']]
+    #empenhos_relatorio = df1[['Empenho', 'Vínculo', 'Emissão,', 'Empenhado' 'Credor']]
 
     # Função para comparar os DataFrames e retornar um novo DataFrame com as diferenças
     def comparar_empenhos(df1, df2):
