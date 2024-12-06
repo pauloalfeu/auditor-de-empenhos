@@ -24,7 +24,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
 
     # Criando um novo DataFrame com as colunas desejadas
     empenhos_planilhados = df2[['EMPENHO', 'ANO', 'PLANILHA']]
-    df2['PLANILHA'].str.decode('utf-8')
+    empenhos_planilhados['PLANILHA'].str.decode('utf-8')
 
     st.data_editor(empenhos_planilhados)
 
