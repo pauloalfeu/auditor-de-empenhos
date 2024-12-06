@@ -26,7 +26,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     #empenhos_relatorio = df1[['Empenho', 'Vínculo', 'Emissão,', 'Empenhado' 'Credor']]
 
     df1['Empenho'] = df1['Empenho'].astype(str)
-    empenhos_relatorio = df1['Empenho']
+    empenhos_relatorio = df1#['Empenho']
 
 
     # Encontrar os empenhos únicos em cada DataFrame
