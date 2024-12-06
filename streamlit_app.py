@@ -28,19 +28,6 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
 
     st.data_editor(empenhos_relatorio)
 
-    # Interface do Streamlit
-    #st.title("Comparação de Empenhos")
-
-    # Aba com as diferenças
-    with st.tab("Empenhos não encontrados em ambos"):
-        st.dataframe(diferencas)
-
-    # Aba com os dados originais (opcional)
-    with st.tab("Dados originais"):
-        st.subheader("Relatório")
-        st.dataframe(empenhos_relatorio)
-        st.subheader("Planilha")
-        st.dataframe(empenhos_planilhados)
 
 
 
