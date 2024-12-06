@@ -13,7 +13,7 @@ uploaded_file_1 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente 
 uploaded_file_2 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente aos **empenhos planilhados**:", type=["csv"])
 
 if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
-    df1 = pd.read_csv(uploaded_file_1, encoding='utf-8')
+    df1 = pd.read_csv(uploaded_file_1)
     df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='utf-8')
 
     # Criando uma nova coluna 'ano' extraindo o ano da coluna 'empenho'
