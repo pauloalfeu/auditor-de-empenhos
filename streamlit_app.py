@@ -27,24 +27,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     #empenhos_relatorio = df1[['Empenho', 'Vínculo', 'Emissão,', 'Empenhado' 'Credor']]
     empenhos_relatorio = df1#['Empenho']
 
-    # Função para comparar os DataFrames e retornar um novo DataFrame com as diferenças
-    def comparar_empenhos(df1, df2):
-
-        # Encontrar os empenhos que estão apenas em um dos DataFrames
-        empenhos_unicos_df1 = df1[~df1['Empenho'].isin(df2['EMPENHO'])]
-        empenhos_unicos_df2 = df2[~df2['Empenho'].isin(df1['EMPENHO'])]
-
-        # Adicionar uma coluna para indicar a origem dos dados
-        empenhos_unicos_df1['ORIGEM'] = 'Relatório'
-        empenhos_unicos_df2['ORIGEM'] = 'Planilha'
-
-        # Concatenar os DataFrames de diferenças
-        diferencas = pd.concat([empenhos_unicos_df1, empenhos_unicos_df2], ignore_index=True)
-
-        return diferencas
-
-    # Chamar a função para comparar os DataFrames
-    diferencas = comparar_empenhos(empenhos_relatorio, empenhos_planilhados)
+    st.data_editor(empenhos_relatorio)
 
     # Interface do Streamlit
     #st.title("Comparação de Empenhos")
