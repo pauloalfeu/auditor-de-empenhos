@@ -23,7 +23,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     df2['EMPENHO'] = df2['EMPENHO'].str.split('/').str[0]
 
     # Criando um novo DataFrame com as colunas desejadas
-    empenhos_planilhados = df2[['EMPENHO', 'ANO']]
+    empenhos_planilhados = df2[['EMPENHO', 'ANO', 'PLANILHA']]
 
     st.data_editor(empenhos_planilhados)
 
