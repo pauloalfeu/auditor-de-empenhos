@@ -28,15 +28,6 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     df1['Empenho'] = df1['Empenho'].astype(str)
     empenhos_relatorio = df1#['Empenho']
 
-    st.data_editor(empenhos_relatorio)
-    st.data_editor(empenhos_planilhados)
-
-
-
-
-
-
-
 
     # Encontrar os empenhos únicos em cada DataFrame
     empenhos_unicos_relatorio = set(empenhos_relatorio['Empenho']) - set(empenhos_planilhados['EMPENHO'])
@@ -48,6 +39,8 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
 
     # Concatenar os DataFrames de diferenças
     diferencas = pd.concat([df_unicos_relatorio, df_unicos_planilhados], ignore_index=True)
+    diferencas.dropna(subset=['Empenho'], inplace=True)
+
 
     # Exibir o DataFrame com as diferenças
     st.data_editor(diferencas)
