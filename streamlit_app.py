@@ -44,6 +44,8 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
 
     # Exibir o DataFrame com as diferenças
     diferencas.drop(columns=['Espécie', 'Dotação', 'Vínculo', 'Estornado', 'Revertido', 'Líquido', 'EMPENHO', 'ANO', 'PLANILHA' ], inplace=True)
+    # Removendo a coluna sem nome (índice 1)
+    diferencas.drop(columns=diferencas.columns[5], inplace=True)
     st.data_editor(diferencas)
 
 
