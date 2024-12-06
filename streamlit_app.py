@@ -36,7 +36,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
 
         # Encontrar os empenhos que estão apenas em um dos DataFrames
         empenhos_unicos_df1 = df1[~df1['Empenho'].isin(df2['EMPENHO'])]
-        empenhos_unicos_df2 = df2[~df2['EMPENHO'].isin(df1['EMPENHO'])]
+        empenhos_unicos_df2 = df2[~df2['Empenho'].isin(df1['EMPENHO'])]
 
         # Adicionar uma coluna para indicar a origem dos dados
         empenhos_unicos_df1['ORIGEM'] = 'Relatório'
