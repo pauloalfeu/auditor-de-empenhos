@@ -27,6 +27,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     empenhos_relatorio = df1#['Empenho']
 
     st.data_editor(empenhos_relatorio)
+    st.data_editor(empenhos_planilhados)
 
 
 
