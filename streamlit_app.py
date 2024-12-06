@@ -25,18 +25,18 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     # Criando um novo DataFrame com as colunas desejadas
     empenhos_planilhados = df2[['EMPENHO', 'ANO', 'PLANILHA']]
     #empenhos_relatorio = df1[['Empenho', 'Vínculo', 'Emissão,', 'Empenhado' 'Credor']]
-    empenhos_relatorio = df1
+    empenhos_relatorio = df1['Empenho']
 
     # Função para comparar os DataFrames e retornar um novo DataFrame com as diferenças
     def comparar_empenhos(df1, df2):
         # Renomear a coluna 'Empenho' do df1 para garantir a comparação
-        #df1 = df1.rename(columns={'Empenho': 'EMPENHO'})
+        df1 = df1.rename(column={'Empenho': 'EMPENHO'})
         # Renomeando a coluna 'A' para 'Coluna_A'
-        df1['Empenho'] = df1['Empenho'].rename('EMPENHO')
+        #df1['Empenho'] = df1['Empenho'].rename('EMPENHO')
 
         # Encontrar os empenhos que estão apenas em um dos DataFrames
-        empenhos_unicos_df1 = df1[~df1['Empenho'].isin(df2['EMPENHO'])]
-        empenhos_unicos_df2 = df2[~df2['Empenho'].isin(df1['EMPENHO'])]
+        empenhos_unicos_df1 = df1[~df1['EMPENHO'].isin(df2['EMPENHO'])]
+        empenhos_unicos_df2 = df2[~df2['EMPENHO'].isin(df1['EMPENHO'])]
 
         # Adicionar uma coluna para indicar a origem dos dados
         empenhos_unicos_df1['ORIGEM'] = 'Relatório'
