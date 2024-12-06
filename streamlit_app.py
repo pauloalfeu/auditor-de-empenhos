@@ -43,6 +43,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
 
 
     # Exibir o DataFrame com as diferenças
+    diferencas.drop(columns=['Espécie'], inplace=True)
     st.data_editor(diferencas)
 
 
