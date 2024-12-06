@@ -25,10 +25,6 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
     # Criando um novo DataFrame com as colunas desejadas
     empenhos_planilhados = df2[['EMPENHO', 'ANO']]
 
-    # Convertendo as colunas 'empenho' e 'ano' para o tipo numérico (opcional)
-    empenhos_planilhados['EMPENHO'] = pd.to_numeric(empenhos_planilhados['EMPENHO'])
-    empenhos_planilhados['ANO'] = pd.to_numeric(empenhos_planilhados['ANO'])
-
     st.data_editor(empenhos_planilhados)
 
 
