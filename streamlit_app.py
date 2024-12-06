@@ -9,28 +9,23 @@ import streamlit as st
 import pandas as pd
 
 def main():
-    st.title("Comparador de Empenhos")
+    st.set_page_config(page_title="Comparador de Empenhos", page_icon="")
 
-    # Upload dos arquivos
-    uploaded_file_relatorio = st.file_uploader("Escolha o arquivo CSV dos Empenhos do Relatório", type=["csv"])
-    uploaded_file_planilhados = st.file_uploader("Escolha o arquivo CSV dos Empenhos Planilhados", type=["csv"])
+    st.sidebar.title("Upload de Arquivos")
 
-    if uploaded_file_relatorio and uploaded_file_planilhados:
-        # Carregar os dados dos arquivos
-        df_relatorio = pd.read_csv(uploaded_file_relatorio)
-        df_planilhados = pd.read_csv(uploaded_file_planilhados)
+    # Upload do primeiro CSV
+    uploaded_file_1 = st.sidebar.file_uploader("Empenhos do Relatório", type=["csv"])
+    if uploaded_file_1 is not None:
+        df1 = pd.read_csv(uploaded_file_1)
+        st.write("## Empenhos do Relatório")
+        st.dataframe(df1)
 
-        # Aqui você implementará a lógica de comparação
-        # Por exemplo, para encontrar os empenhos que estão em um arquivo e não no outro:
-        empenhos_unicos_relatorio = df_relatorio[~df_relatorio['Coluna_Empenho'].isin(df_planilhados['Coluna_Empenho'])]
-        empenhos_unicos_planilhados = df_planilhados[~df_planilhados['Coluna_Empenho'].isin(df_relatorio['Coluna_Empenho'])]
+    # Upload do segundo CSV
+    uploaded_file_2 = st.sidebar.file_uploader("Empenhos Planilhados", type=["csv"])
+    if uploaded_file_2 is not None:
+        df2 = pd.read_csv(uploaded_file_2)
+        st.write("## Empenhos Planilhados")
+        st.dataframe(df2)
 
-        # Exibir os resultados em tabelas
-        st.subheader("Empenhos Únicos no Relatório")
-        st.dataframe(empenhos_unicos_relatorio)
-
-        st.subheader("Empenhos Únicos na Planilha")
-        st.dataframe(empenhos_unicos_planilhados)
-
-if __name__ == "__main__":
+if __name__ == "__streamlit_app__":
     main()
