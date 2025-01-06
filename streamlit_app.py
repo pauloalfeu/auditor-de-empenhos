@@ -9,6 +9,8 @@ st.sidebar.title("Upload dos Arquivos")
 
     # Upload do primeiro CSV
 uploaded_file_1 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente ao **relatório de 'empenhos emitios'** gerados pelos seu sistema:")
+# Permitir que o usuário escolha o separador (opcional)
+separador = st.selectbox("Selecione o separador do arquivo 1", [";", ","])
 
     # Upload do segundo CSV
 uploaded_file_2 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente aos **empenhos planilhados**:")
@@ -31,8 +33,8 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
         with open(arquivo, 'rb') as rawdata:
             return chardet.detect(rawdata.read(10000))['encoding']
     
-    codificacao1 = detectar_codificacao(uploaded_file_1)
-    codificacao2 = detectar_codificacao(uploaded_file_2)
+    codificacao1 = detectar_codificacao(uploaded_file_1.name)
+    codificacao2 = detectar_codificacao(uploaded_file_2.name)
     df1 = pd.read_csv(uploaded_file_1, sep=';', encoding=codificacao1)
     df1 = pd.DataFrame(df1)
     df2 = pd.read_csv(uploaded_file_2, sep=',', encoding=codificacao2)
