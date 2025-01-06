@@ -17,7 +17,7 @@ st.sidebar.warning("""Para haver processamento correto, a planilha inserida deve
 Para isso, basta colar os números dos empenhos que serão buscados em uma planilha em branco (_ideal para pesquisar por empenhos de mais de uma planilha_)""")
 
 if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
-    df1 = pd.read_csv(uploaded_file_1, sep=';', encoding='utf-8')
+    df1 = pd.read_csv(uploaded_file_1, sep=';', encoding='latin-1')
     df1 = pd.DataFrame(df1)
     df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='utf-8')
     df2 = pd.DataFrame(df2)
