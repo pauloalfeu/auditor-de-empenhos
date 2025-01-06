@@ -9,8 +9,6 @@ st.sidebar.title("Upload dos Arquivos")
 
     # Upload do primeiro CSV
 uploaded_file_1 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente ao **relatório de 'empenhos emitios'** gerados pelos seu sistema:")
-# Permitir que o usuário escolha o separador (opcional)
-separador = st.selectbox("Selecione o separador do arquivo 1", [";", ","])
 
     # Upload do segundo CSV
 uploaded_file_2 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente aos **empenhos planilhados**:")
@@ -20,25 +18,26 @@ st.sidebar.warning("""Para haver processamento correto, a planilha inserida deve
 Para isso, basta colar os números dos empenhos que serão buscados em uma planilha em branco (_ideal para pesquisar por empenhos de mais de uma planilha_)""")
 
 if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
-    def detectar_codificacao(arquivo):
-        """Detecta a codificação de um arquivo CSV.
+    # Permitir que o usuário escolha o separador (opcional)
+    separador = st.selectbox("Selecione o separador do arquivo 1", [";", ","])
 
-        Args:
-            arquivo (str): Caminho completo para o arquivo.
+    try:
+        # Detectar a codificação e ler o arquivo em uma única linha
+        df1 = pd.read_csv(uploaded_file_1, sep=separador, encoding='utf-8', error_bad_lines=False)  # Tentativa com UTF-8 inicialmente
 
-        Returns:
-            str: Codificação detectada.
-        """
+        # Se ocorrer um erro, tentar detectar a codificação automaticamente
+        if df1.shape[0] == 0:
+            with uploaded_file_1 as f:
+                result = chardet.detect(f.read(10000))
+                df1 = pd.read_csv(uploaded_file_1, sep=separador, encoding=result['encoding'], error_bad_lines=False)
 
-        with open(arquivo, 're') as rawdata:
-            return chardet.detect(rawdata.read(10000))['encoding']
-    
-    codificacao1 = detectar_codificacao(uploaded_file_1.name)
+        # Ler o segundo arquivo
+        df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='utf-8', error_bad_lines=False)
 
-    df1 = pd.read_csv(uploaded_file_1, sep=separador, encoding=codificacao1)
-    df1 = pd.DataFrame(df1)
-    df2 = pd.read_csv(uploaded_file_2, sep=',', encoding= 'UTF-8')
-    df2 = pd.DataFrame(df2)
+    except Exception as e:
+        st.error(f"Erro ao ler os arquivos: {e}")
+
+
     # Criando uma nova coluna 'ano' extraindo o ano da coluna 'empenho'
     df2['ANO'] = df2['EMPENHO'].str.extract(r'(\d{4})$')
 
