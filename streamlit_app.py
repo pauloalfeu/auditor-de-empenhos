@@ -38,9 +38,12 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
         st.error(f"Erro ao ler os arquivos: {e}")
 
 
+    if df1 is not None:
+            df1 = pd.DataFrame(df1)
 
-    df1 = pd.DataFrame(df1)
-    df2 = pd.DataFrame(df2)
+    if df2 is not None:
+        df2 = pd.DataFrame(df2)
+        
     # Criando uma nova coluna 'ano' extraindo o ano da coluna 'empenho'
     df2['ANO'] = df2['EMPENHO'].str.extract(r'(\d{4})$')
 
