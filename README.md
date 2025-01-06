@@ -1,18 +1,18 @@
-# 🎈 Blank app template
+# 📑 COMPARADOR DE EMPENHOS
 
-A simple Streamlit app template for you to modify!
+Um modelo simples de aplicativo Streamlit para você comparar empenhos planilhados com os relatórios gerados pelo seu sistema!
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+[![Abrir no Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://auditor-de-empenhos.streamlit.app/)
 
-### How to run it on your own machine
+### Como rodar em sua própria máquina
 
-1. Install the requirements
+1. Instale as dependências
 
    ```
    $ pip install -r requirements.txt
    ```
 
-2. Run the app
+2. Execute o aplicativo
 
    ```
    $ streamlit run streamlit_app.py
