@@ -31,8 +31,8 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
                 result = chardet.detect(f.read(10000))
                 df1 = pd.read_csv(uploaded_file_1, sep=separador, encoding=result['encoding'], error_bad_lines=False)
 
-        # Ler o segundo arquivo
-        df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='utf-8', error_bad_lines=False)
+    # Ler o segundo arquivo
+    df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='utf-8', error_bad_lines=False)
 
     except Exception as e:
         st.error(f"Erro ao ler os arquivos: {e}")
