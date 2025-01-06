@@ -30,7 +30,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
             str: Codificação detectada.
         """
 
-        with open(arquivo, separador) as rawdata:
+        with open(arquivo, 're') as rawdata:
             return chardet.detect(rawdata.read(10000))['encoding']
     
     codificacao1 = detectar_codificacao(uploaded_file_1.name)
