@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import chardet
 
 st.set_page_config(page_title="Comparador de Empenhos", page_icon="")
 st.markdown("### 📑 COMPARADOR DE EMPENHOS")
@@ -18,33 +17,10 @@ st.sidebar.warning("""Para haver processamento correto, a planilha inserida deve
 Para isso, basta colar os números dos empenhos que serão buscados em uma planilha em branco (_ideal para pesquisar por empenhos de mais de uma planilha_)""")
 
 if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
-    # Permitir que o usuário escolha o separador (opcional)
-    separador = st.selectbox("Selecione o separador do arquivo 1", [";", ","])
-
-    try:
-        # Detectar a codificação automaticamente
-        with uploaded_file_1 as f:
-            result = chardet.detect(f.read(10000))
-            encoding = result['encoding']
-            data = f.read()  # Ler todo o conteúdo do arquivo
-
-        # Ler o primeiro arquivo
-        df1 = pd.read_csv(io.StringIO(data), sep=separador, encoding=encoding, on_bad_lines='skip')
-
-        # Ler o segundo arquivo
-        # ... (seu código para ler o segundo arquivo)
-
-    except UnicodeDecodeError as e:
-        st.error(f"Erro de decodificação: {e}. Tente com outra codificação ou verifique o arquivo.")
-    except Exception as e:
-        st.error(f"Erro ao ler os arquivos: {e}")
-
-    # Agora que df1 e df2 foram definidos, podemos usá-los aqui
-    if df1 is not None:
-        df1 = pd.DataFrame(df1)
-    if df2 is not None:
-        df2 = pd.DataFrame(df2)
-
+    df1 = pd.read_csv(uploaded_file_1, sep=';', encoding='windows-1252')
+    df1 = pd.DataFrame(df1)
+    df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='utf-8')
+    df2 = pd.DataFrame(df2)
     # Criando uma nova coluna 'ano' extraindo o ano da coluna 'empenho'
     df2['ANO'] = df2['EMPENHO'].str.extract(r'(\d{4})$')
 
