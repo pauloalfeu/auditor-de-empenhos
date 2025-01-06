@@ -34,10 +34,10 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
             return chardet.detect(rawdata.read(10000))['encoding']
     
     codificacao1 = detectar_codificacao(uploaded_file_1.name)
-    codificacao2 = detectar_codificacao(uploaded_file_2.name)
+
     df1 = pd.read_csv(uploaded_file_1, sep=separador, encoding=codificacao1)
     df1 = pd.DataFrame(df1)
-    df2 = pd.read_csv(uploaded_file_2, sep=',', encoding=codificacao2)
+    df2 = pd.read_csv(uploaded_file_2, sep=',', encoding= 'UTF-8')
     df2 = pd.DataFrame(df2)
     # Criando uma nova coluna 'ano' extraindo o ano da coluna 'empenho'
     df2['ANO'] = df2['EMPENHO'].str.extract(r'(\d{4})$')
