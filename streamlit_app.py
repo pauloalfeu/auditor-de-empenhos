@@ -8,7 +8,7 @@ st.sidebar.title("Upload dos Arquivos")
 
     # Upload do primeiro CSV
 uploaded_file_1 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente ao **relatório de 'empenhos emitios'** gerados pelos seu sistema:")
-
+separador = st.sidebar.selectbox("Selecione o separador do arquivo 1", [";", ","])
     # Upload do segundo CSV
 uploaded_file_2 = st.sidebar.file_uploader("Carregue abaixo o arquivo referente aos **empenhos planilhados**:")
 
