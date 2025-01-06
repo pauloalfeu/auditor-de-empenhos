@@ -25,13 +25,14 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
         # Detectar a codificação automaticamente
         with uploaded_file_1 as f:
             result = chardet.detect(f.read(10000))
-        encoding = result['encoding']
+            encoding = result['encoding']
+            data = f.read()  # Ler todo o conteúdo do arquivo
 
         # Ler o primeiro arquivo
-        df1 = pd.read_csv(uploaded_file_1, sep=separador, encoding=encoding, on_bad_lines='skip')
+        df1 = pd.read_csv(io.StringIO(data), sep=separador, encoding=encoding, on_bad_lines='skip')
 
         # Ler o segundo arquivo
-        df2 = pd.read_csv(uploaded_file_2, sep=',', encoding='utf-8', on_bad_lines='skip')
+        # ... (seu código para ler o segundo arquivo)
 
     except UnicodeDecodeError as e:
         st.error(f"Erro de decodificação: {e}. Tente com outra codificação ou verifique o arquivo.")
