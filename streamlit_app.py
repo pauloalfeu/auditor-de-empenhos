@@ -30,12 +30,12 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
             str: Codificação detectada.
         """
 
-        with open(arquivo, 'rb') as rawdata:
+        with open(arquivo, separador) as rawdata:
             return chardet.detect(rawdata.read(10000))['encoding']
     
     codificacao1 = detectar_codificacao(uploaded_file_1.name)
     codificacao2 = detectar_codificacao(uploaded_file_2.name)
-    df1 = pd.read_csv(uploaded_file_1, sep=';', encoding=codificacao1)
+    df1 = pd.read_csv(uploaded_file_1, sep=separador, encoding=codificacao1)
     df1 = pd.DataFrame(df1)
     df2 = pd.read_csv(uploaded_file_2, sep=',', encoding=codificacao2)
     df2 = pd.DataFrame(df2)
