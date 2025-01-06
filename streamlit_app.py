@@ -49,7 +49,7 @@ if (uploaded_file_1 is not None) and (uploaded_file_2 is not None):
 
 
     # Exibir o DataFrame com as diferenças
-    diferencas.drop(columns=['Espécie', 'Dotação', 'Vínculo', 'Estornado', 'Revertido', 'Líquido', 'EMPENHO', 'ANO', 'PLANILHA' ], inplace=True)
+    #diferencas.drop(columns=['Espécie', 'Dotação', 'Vínculo', 'Estornado', 'Revertido', 'Líquido', 'EMPENHO', 'ANO', 'PLANILHA' ], inplace=True)
     # Removendo a coluna sem nome (índice 1)
     diferencas = diferencas.dropna(axis=1, how='all')
     st.data_editor(diferencas)
